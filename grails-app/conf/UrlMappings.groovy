@@ -8,7 +8,11 @@ class UrlMappings {
         }
 
         "/"(controller: "Main", action:"index")
+        "/report"(controller: "Report", action:"index")
 
+        "/_search" (controller: "Main") {
+            action = [GET: "get", PUT: "put", DELETE: "delete", POST: "post"]
+        }
 
         "/$index/$object/$id" (controller: "Main") {
             action = [GET: "get", PUT: "put", DELETE: "delete", POST: "post"]

@@ -116,31 +116,37 @@
             <div>
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <i class="fa fa-bell fa-fw"></i> Notifications Panel
+                        <i class="fa fa-bell fa-fw"></i> Notifications Panel / ${counter} total requests
                     </div>
                     <!-- /.panel-heading -->
                     <div >
                         <table class="table table-striped table-bordered" id="dataTables-example">
                             <thead>
                             <tr>
-                                <th>Time</th>
-                                <th>Source</th>
-                                <th>Type</th>
+                                <th>Date</th>
+                                <th>IP</th>
                                 <th>Request</th>
-                                <th>Action</th>
+
                             </tr>
                             </thead>
                             <tbody>
 
+                            <g:each in="${Reports}" var="report">
 
-                            <tr ng-repeat="alarm in alarms">
-                                <td>{{alarm.time}}</td>
-                                <td>{{alarm.attacker}}</td>
-                                <td>{{alarm.type}}</td>
-                                <td>{{alarm.request}}</td>
 
-                                <td class="center"> <a href="/Report/show/{{alarm.id}}" class="btn btn-primary">View</a> <a href="/Report/confirm/{{alarm.id}}" class="btn btn-success">Confirm</a> <a href="/Report/delete/{{alarm.id}}" class="btn btn-danger">Delete</a>   </td>
+
+
+
+                            <tr>
+                                <td>${report.date}</td>
+                                <td>${report.ip}</td>
+                                <td>${report.request}</td>
+
                             </tr>
+
+                            </g:each>
+
+
                             </tbody>
                         </table>
                     </div>

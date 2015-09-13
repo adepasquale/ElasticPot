@@ -46,8 +46,9 @@ class MainController
         response.setContentType("text/plain")
 
         def requestLine = request.forwardURI
+        def remoteIP = request.remoteAddr
 
-        println "ElasticPot: Put Call: Index: " + params.index + " Object: " + params.object + " ID: " + params.id + " at time " + new Date()
+        println "ElasticPot: Put Call: " + requestLine + " from IP: " + remoteIP + " at time " + new Date()
 
         // store request data
 
@@ -63,22 +64,66 @@ class MainController
     def get()
     {
 
+        response.setContentType("text/plain")
+
+        def requestLine = request.forwardURI
+        def remoteIP = request.remoteAddr
+
+        println "ElasticPot: GET Call: " + requestLine + " from IP: " + remoteIP + " at time " + new Date()
+
+        // store request data
+
+        Jedis jedis = new Jedis("localhost")
+        jedis.incr("requestCounter")
+        jedis.lpush("GET Request",  requestLine + "||" + new Date() + "||" + request.remoteAddr)
+        jedis.lpush("IP", request.remoteAddr + "|| " + new Date())
+
+
+        if (requestLine.startsWith("/_search"))
+            requestLine = "{\"took\":23,\"timed_out\":false,\"_shards\":{\"total\":10,\"successful\":10,\"failed\":0},\"hits\":{\"total\":19,\"max_score\":1.0,\"hits\":"
+
+        render(requestLine)
+
     }
 
     def post()
     {
+        response.setContentType("text/plain")
 
+        def requestLine = request.forwardURI
+        def remoteIP = request.remoteAddr
+
+        println "ElasticPot: POST Call: " + requestLine + " from IP: " + remoteIP + " at time " + new Date()
+
+        // store request data
+
+        Jedis jedis = new Jedis("localhost")
+        jedis.incr("requestCounter")
+        jedis.lpush("POST Request",  requestLine + "||" + new Date() + "||" + request.remoteAddr)
+        jedis.lpush("IP", request.remoteAddr + "|| " + new Date())
+
+        render(requestLine)
     }
 
     def delete()
     {
 
+        response.setContentType("text/plain")
+
+        def requestLine = request.forwardURI
+        def remoteIP = request.remoteAddr
+
+        println "ElasticPot: Delete Call: " + requestLine + " from IP: " + remoteIP + " at time " + new Date()
+
+        // store request data
+
+        Jedis jedis = new Jedis("localhost")
+        jedis.incr("requestCounter")
+        jedis.lpush("DELETE Request",  requestLine + "||" + new Date() + "||" + request.remoteAddr)
+        jedis.lpush("IP", request.remoteAddr + "|| " + new Date())
+
+        render(requestLine)
+
     }
 }
 
-/*
-
-BE1NR176:ElasticSearch a790100$ curl -XPUT 'http://localhost:9200/ews/Alert/5468215b0cf210243d8c3841' -d '{ "user" : "kimchy", "post_date" : "2007-11-15T14:12:12", "message" : "trying out Elasticsearch" }'
-{"_index":"ews","_type":"Alert","_id":"5468215b0cf210243d8c3841","_version":4,"created":false}BE1NR176:ElasticSearch a790100$
-
- */
