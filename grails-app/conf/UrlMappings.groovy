@@ -9,10 +9,5 @@ class UrlMappings {
             action = [GET: "get", PUT: "put", DELETE: "delete", POST: "post"]
         }
 
-        "/$index/$object/$id" (controller: "Main") {
-            action = [GET: "get", PUT: "put", DELETE: "delete", POST: "post"]
-        }
-
-
 	}
 }
