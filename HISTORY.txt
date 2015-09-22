@@ -1,0 +1,3 @@
+Version 0.3   (22/09/2015)
+
+First production version, yet not complete feature set
