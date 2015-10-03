@@ -92,13 +92,16 @@
           <root url="jar://$MAVEN_REPOSITORY$/org/liquibase/liquibase-core/2.0.5/liquibase-core-2.0.5.jar!/" />
           <root url="jar://$MAVEN_REPOSITORY$/org/grails/grails-datastore-test-support/1.0.2-grails-2.4/grails-datastore-test-support-1.0.2-grails-2.4.jar!/" />
           <root url="jar://$MAVEN_REPOSITORY$/cglib/cglib-nodep/2.2.2/cglib-nodep-2.2.2.jar!/" />
-          <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-core/7.0.55/tomcat-embed-core-7.0.55.jar!/" />
-          <root url="jar://$MAVEN_REPOSITORY$/org/eclipse/jdt/core/compiler/ecj/3.7.2/ecj-3.7.2.jar!/" />
-          <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-websocket/7.0.55/tomcat-embed-websocket-7.0.55.jar!/" />
-          <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-logging-log4j/7.0.55/tomcat-embed-logging-log4j-7.0.55.jar!/" />
-          <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-el/7.0.55/tomcat-embed-el-7.0.55.jar!/" />
-          <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-jasper/7.0.55/tomcat-embed-jasper-7.0.55.jar!/" />
-          <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/tomcat-catalina-ant/7.0.55/tomcat-catalina-ant-7.0.55.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/org/apache/commons/commons-pool2/2.0/commons-pool2-2.0.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/redis/clients/jedis/2.6.0/jedis-2.6.0.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-core/8.0.22/tomcat-embed-core-8.0.22.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/org/eclipse/jdt/core/compiler/ecj/4.4.2/ecj-4.4.2.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-websocket/8.0.22/tomcat-embed-websocket-8.0.22.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-logging-juli/8.0.22/tomcat-embed-logging-juli-8.0.22.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-logging-log4j/8.0.22/tomcat-embed-logging-log4j-8.0.22.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-jasper/8.0.22/tomcat-embed-jasper-8.0.22.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/org/apache/tomcat/embed/tomcat-embed-el/8.0.22/tomcat-embed-el-8.0.22.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

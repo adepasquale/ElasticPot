@@ -45,7 +45,7 @@ class MainController
     {
         response.setContentType("text/plain")
 
-        def requestLine = request.forwardURI
+        String requestLine = request.getRequestURI() + "?" + request.queryString //forwardURI
         def remoteIP = request.remoteAddr
 
         println "ElasticPot: Put Call: " + requestLine + " from IP: " + remoteIP + " at time " + new Date()
@@ -66,7 +66,7 @@ class MainController
 
         response.setContentType("text/plain")
 
-        String requestLine = request.forwardURI
+        String requestLine = request.getRequestURI() + "?" + request.queryString //forwardURI
         def remoteIP = request.remoteAddr
 
         println "ElasticPot: GET Call: " + requestLine + " from IP: " + remoteIP + " at time " + new Date()
@@ -94,7 +94,7 @@ class MainController
     {
         response.setContentType("text/plain")
 
-        def requestLine = request.forwardURI
+        String requestLine = request.getRequestURI() + "?" + request.queryString //forwardURI
         def remoteIP = request.remoteAddr
 
         println "ElasticPot: POST Call: " + requestLine + " from IP: " + remoteIP + " at time " + new Date()
@@ -114,7 +114,7 @@ class MainController
 
         response.setContentType("text/plain")
 
-        def requestLine = request.forwardURI
+        String requestLine = request.getRequestURI() + "?" + request.queryString //forwardURI
         def remoteIP = request.remoteAddr
 
         println "ElasticPot: Delete Call: " + requestLine + " from IP: " + remoteIP + " at time " + new Date()
