@@ -100,6 +100,14 @@ class MainController
     {
         response.setContentType("text/plain")
 
+        StringBuffer jb = new StringBuffer();
+        String line = null;
+        try {
+            BufferedReader reader = request.getReader();
+            while ((line = reader.readLine()) != null)
+                jb.append(line);
+        } catch (Exception e) { /*report an error*/ }
+
         String requestLine = request.forwardURI
         if (request.queryString != null)
             requestLine += "?" + request.queryString
@@ -107,6 +115,9 @@ class MainController
         def remoteIP = request.remoteAddr
 
         println "ElasticPot: POST Call: " + requestLine + " from IP: " + remoteIP + " at time " + new Date()
+        if (jb.length() >= 2)
+            println "            Body:     " + jb.toString()
+
 
         // store request data
 
