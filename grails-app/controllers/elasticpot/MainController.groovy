@@ -78,7 +78,6 @@ class MainController
         println "ElasticPot: GET Call: " + requestLine + " from IP: " + remoteIP + " at time " + new Date()
 
         // store request data
-
         Jedis jedis = new Jedis("localhost")
         jedis.incr("requestCounter")
         jedis.lpush("GET Request",  requestLine + "||" + new Date() + "||" + request.remoteAddr)
@@ -86,7 +85,14 @@ class MainController
 
 
         if (requestLine.startsWith("/_search"))
+        {
+
+            // call home, if on a T-Pot installation
+            EWSController x = new EWSController()
+            x.send(remoteIP, requestLine, "MyElasticHoneypotHost")
+
             requestLine = "{\"took\":23,\"timed_out\":false,\"_shards\":{\"total\":10,\"successful\":10,\"failed\":0},\"hits\":{\"total\":19,\"max_score\":1.0,\"hits\":"
+        }
         else {
             requestLine = "{\"error\":\"ElasticsearchIllegalArgumentException[No feature for name ["+ requestLine.substring(1) +"]]\",\"status\":400}"
         }
@@ -100,19 +106,23 @@ class MainController
     {
         response.setContentType("text/plain")
 
+        String requestLine = request.forwardURI
+        if (request.queryString != null)
+            requestLine += "?" + request.queryString
+
+        def remoteIP = request.remoteAddr
+
         StringBuffer jb = new StringBuffer();
         String line = null;
         try {
             BufferedReader reader = request.getReader();
             while ((line = reader.readLine()) != null)
                 jb.append(line);
-        } catch (Exception e) { /*report an error*/ }
+        } catch (Exception e) {
 
-        String requestLine = request.forwardURI
-        if (request.queryString != null)
-            requestLine += "?" + request.queryString
-
-        def remoteIP = request.remoteAddr
+            println "ElasticPot: Parsing POST Call: " + requestLine + " from IP: " + remoteIP + " at time " + new Date() + " failed...."
+            render(requestLine)
+        }
 
         println "ElasticPot: POST Call: " + requestLine + " from IP: " + remoteIP + " at time " + new Date()
         if (jb.length() >= 2)

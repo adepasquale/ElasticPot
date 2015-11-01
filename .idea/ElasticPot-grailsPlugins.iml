@@ -16,6 +16,9 @@
         <naming-strategy-map />
       </configuration>
     </facet>
+    <facet type="Spring" name="Spring">
+      <configuration />
+    </facet>
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
@@ -60,6 +63,7 @@
     <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="grails-2.5.1" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="commons-codec-1.9" level="project" />
     <orderEntry type="module-library" exported="">
       <library name="Grails User Library (ElasticPot-grailsPlugins)">
         <CLASSES>

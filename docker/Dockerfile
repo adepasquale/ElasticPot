@@ -9,8 +9,8 @@ EXPOSE 8080 22
 RUN ln -snf /bin/bash /bin/sh && apt-get update && apt-get install -y redis-server supervisor git openssh-server && mkdir /data
 
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-COPY start.sh /data/start.sh
 
+COPY start.sh /data/start.sh
 
 WORKDIR "/data/"
 
