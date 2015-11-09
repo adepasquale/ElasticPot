@@ -1,11 +1,14 @@
 package JavaHelpers;
 
+import org.apache.http.ExceptionLogger;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+
+import java.net.URLEncoder;
 import java.util.Date;
 
 
@@ -68,44 +71,48 @@ public class EWSHelper
     private String getRequest(String username, String password, String time, String sourceIP, String requestData, String host)
     {
 
-        String ewsRequest = "" +
-                "<EWS-SimpleMessage version=\"2.0\">\n"+
-                "<Authentication>\n"+
-                "<username>USER</username>"+
-                "<token>PASSWORD</token>"+
-                "</Authentication>"+
+        try
+        {
 
-                "<Alert>"+
-                "<Analyzer id=\"4711\"/>"+
-                "<CreateTime tz=\"+0200\">TIME</CreateTime>"+
-                "<Source category=\"ipv4\" port=\"\" protocol=\"tcp\">SOURCE_IP</Source>"+
-                "<Target category=\"ipv4\" port=\"9200\" protocol=\"tcp\">1.2.3.4</Target>"+
-                "<Request type=\"url\">PLAIN</Request>"+
-                "<Request type=\"raw\">RAW</Request>"+
-                "<Request type=\"description\">ElasticSearch%20Honeypot</Request>"+
-                "<AdditionalData meaning=\"host\" type=\"string\">HOST</AdditionalData>"+
-                "</Alert>"+
+            String ewsRequest = "" +
+                    "<EWS-SimpleMessage version=\"2.0\">\n" +
+                    "<Authentication>\n" +
+                    "<username>USER</username>" +
+                    "<token>PASSWORD</token>" +
+                    "</Authentication>" +
 
-                "</EWS-SimpleMessage>\r\n\r\n";
+                    "<Alert>" +
+                    "<Analyzer id=\"4711\"/>" +
+                    "<CreateTime tz=\"+0200\">TIME</CreateTime>" +
+                    "<Source category=\"ipv4\" port=\"\" protocol=\"tcp\">SOURCE_IP</Source>" +
+                    "<Target category=\"ipv4\" port=\"9200\" protocol=\"tcp\">1.2.3.4</Target>" +
+                    "<Request type=\"url\">PLAIN</Request>" +
+                    "<Request type=\"raw\">RAW</Request>" +
+                    "<Request type=\"description\">ElasticSearch%20Honeypot</Request>" +
+                    "<AdditionalData meaning=\"host\" type=\"string\">HOST</AdditionalData>" +
+                    "</Alert>" +
 
-        ewsRequest = ewsRequest.replace("USER", username);
-        ewsRequest = ewsRequest.replace("PASSWORD", password);
-        ewsRequest = ewsRequest.replace("SOURCE_IP", sourceIP);
-        ewsRequest = ewsRequest.replace("PLAIN", requestData);
-        ewsRequest = ewsRequest.replace("HOST", host);
-        ewsRequest = ewsRequest.replace("TIME", time);
+                    "</EWS-SimpleMessage>\r\n\r\n";
 
-        return ewsRequest;
+            ewsRequest = ewsRequest.replace("USER", username);
+            ewsRequest = ewsRequest.replace("PASSWORD", password);
+            ewsRequest = ewsRequest.replace("SOURCE_IP", sourceIP);
+            ewsRequest = ewsRequest.replace("PLAIN", URLEncoder.encode(requestData, "UTF-8"));
+
+            ewsRequest = ewsRequest.replace("HOST", host);
+            ewsRequest = ewsRequest.replace("TIME", URLEncoder.encode(time, "UTF-8"));
+
+
+            return ewsRequest;
+
+        }
+        catch (Exception e)
+        {
+            System.out.println("Error at BadIPFetch.EWSClient.getRequest(" + new Date().toString() + "): Exception caught");
+            return null;
+        }
 
     }   // getRequest
 
 }
 
-/*
-
-
-username = community-01-user
-token = foth{a5maiCee8fineu7
-rhost_first = https://community.sicherheitstacho.eu/ews-0.1/alert/postSimpleMessage
-rhost_second = https://community.sicherheitstacho.eu/ews-0.1/alert/postSimpleMessage
- */
