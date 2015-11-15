@@ -2,11 +2,13 @@ package elasticpot
 
 import redis.clients.jedis.Jedis
 
+
 class ReportController
 {
 
     def index()
     {
+        Jedis redisService = new Jedis("localhost")
 
         String prop = (String)grailsApplication.config['reportshow']
 
@@ -14,10 +16,9 @@ class ReportController
             redirect(controller:"Main", action: "get")
         }
 
-        Jedis jedis = new Jedis("localhost")
-        List reports = jedis.lrange("Index Request", 0, -1)
+        List reports = redisService.lrange("Index Request", 0, -1)
 
-        String counter = jedis.get("requestCounter")
+        String counter = redisService.get("requestCounter")
 
         List reportsReportHelper = new LinkedList()
 

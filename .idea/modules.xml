@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/ElasticPot.iml" filepath="$PROJECT_DIR$/.idea/ElasticPot.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/ElasticPot-grailsPlugins.iml" filepath="$PROJECT_DIR$/.idea/ElasticPot-grailsPlugins.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ElasticPot.iml" filepath="$PROJECT_DIR$/ElasticPot.iml" />
     </modules>
   </component>
 </project>

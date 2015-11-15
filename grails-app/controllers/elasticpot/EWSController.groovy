@@ -2,6 +2,8 @@ package elasticpot
 
 import JavaHelpers.EWSHelper
 
+import java.text.SimpleDateFormat
+
 class EWSController
 {
 
@@ -57,11 +59,16 @@ class EWSController
         def (String username, String password, String server) = getCredentialsDefaultConfig()
 
         if (username != null && password != null && server != null)
+        {
+
+            Date curDate = new Date()
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+            String DateToStr = format.format(curDate)
+
             EWSHelper.sendAlarm(username, password, new Date().toString(), attackerIP, attackerRequest, host, server)
+        }
 
     }
-
-
 
 
 

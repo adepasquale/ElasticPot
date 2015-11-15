@@ -5,3 +5,7 @@ First production version, yet not complete feature set
 Version 0.4   (01/11/2015)
 
 Second production tag, EWS reporter added
+
+Version 0.41  (15/11/2015)
+
+Migrated to Grails 3

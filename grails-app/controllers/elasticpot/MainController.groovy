@@ -1,10 +1,11 @@
 package elasticpot
 
-import redis.clients.jedis.*
+import redis.clients.jedis.Jedis
 
 
 class MainController
 {
+
 
     /**
      *
@@ -34,9 +35,9 @@ class MainController
                         "\"tagline\" : \"You Know, for Search\"" +
                         "}"
 
-        Jedis jedis = new Jedis("localhost")
-        jedis.incr("requestCounter")
-        jedis.lpush("Index Request",  "/" + "||" + new Date() + "||" + request.remoteAddr)
+        Jedis redisService = new Jedis("localhost")
+        redisService.incr("requestCounter")
+        redisService.lpush("Index Request",  "/" + "||" + new Date() + "||" + request.remoteAddr)
 
         render(data)
     }
@@ -55,10 +56,11 @@ class MainController
 
         // store request data
 
-        Jedis jedis = new Jedis("localhost")
-        jedis.incr("requestCounter")
-        jedis.lpush("PUT Request",  requestLine + "||" + new Date() + "||" + request.remoteAddr)
-        jedis.lpush("IP", request.remoteAddr + "|| " + new Date())
+        Jedis redisService = new Jedis("localhost")
+
+        redisService.incr("requestCounter")
+        redisService.lpush("PUT Request",  requestLine + "||" + new Date() + "||" + request.remoteAddr)
+        redisService.lpush("IP", request.remoteAddr + "|| " + new Date())
 
         render(requestLine)
     }
@@ -66,6 +68,8 @@ class MainController
 
     def get()
     {
+
+        Jedis redisService = new Jedis("localhost")
 
         response.setContentType("text/plain")
 
@@ -78,10 +82,9 @@ class MainController
         println "ElasticPot: GET Call: " + requestLine + " from IP: " + remoteIP + " at time " + new Date()
 
         // store request data
-        Jedis jedis = new Jedis("localhost")
-        jedis.incr("requestCounter")
-        jedis.lpush("GET Request",  requestLine + "||" + new Date() + "||" + request.remoteAddr)
-        jedis.lpush("IP", request.remoteAddr + "|| " + new Date())
+        redisService.incr("requestCounter")
+        redisService.lpush("GET Request",  requestLine + "||" + new Date() + "||" + request.remoteAddr)
+        redisService.lpush("IP", request.remoteAddr + "|| " + new Date())
 
 
         if (requestLine.startsWith("/_search"))
@@ -104,6 +107,9 @@ class MainController
 
     def post()
     {
+
+        Jedis redisService = new Jedis("localhost")
+
         response.setContentType("text/plain")
 
         String requestLine = request.forwardURI
@@ -131,16 +137,17 @@ class MainController
 
         // store request data
 
-        Jedis jedis = new Jedis("localhost")
-        jedis.incr("requestCounter")
-        jedis.lpush("POST Request",  requestLine + "||" + new Date() + "||" + request.remoteAddr)
-        jedis.lpush("IP", request.remoteAddr + "|| " + new Date())
+        redisService.incr("requestCounter")
+        redisService.lpush("POST Request",  requestLine + "||" + new Date() + "||" + request.remoteAddr)
+        redisService.lpush("IP", request.remoteAddr + "|| " + new Date())
 
         render(requestLine)
     }
 
     def delete()
     {
+
+        Jedis redisService = new Jedis("localhost")
 
         response.setContentType("text/plain")
 
@@ -154,10 +161,9 @@ class MainController
 
         // store request data
 
-        Jedis jedis = new Jedis("localhost")
-        jedis.incr("requestCounter")
-        jedis.lpush("DELETE Request",  requestLine + "||" + new Date() + "||" + request.remoteAddr)
-        jedis.lpush("IP", request.remoteAddr + "|| " + new Date())
+        redisService.incr("requestCounter")
+        redisService.lpush("DELETE Request",  requestLine + "||" + new Date() + "||" + request.remoteAddr)
+        redisService.lpush("IP", request.remoteAddr + "|| " + new Date())
 
         render(requestLine)
 
