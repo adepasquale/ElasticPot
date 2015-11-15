@@ -9,3 +9,5 @@ Second production tag, EWS reporter added
 Version 0.41  (15/11/2015)
 
 Migrated to Grails 3 (3.0.9)
+Fixed bug in Date stuff for EWS senders
+
