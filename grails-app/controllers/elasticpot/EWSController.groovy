@@ -63,9 +63,12 @@ class EWSController
 
             Date curDate = new Date()
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+            //         <CreateTime tz="+0200">2015-09-09 16:39:21</CreateTime>
+
+
             String DateToStr = format.format(curDate)
 
-            EWSHelper.sendAlarm(username, password, new Date().toString(), attackerIP, attackerRequest, host, server)
+            EWSHelper.sendAlarm(username, password, DateToStr, attackerIP, attackerRequest, host, server)
         }
 
     }
