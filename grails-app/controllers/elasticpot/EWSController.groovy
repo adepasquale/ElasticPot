@@ -53,7 +53,13 @@ class EWSController
 
     }
 
-
+    /**
+     * send data to core EWS system of DTAG
+     * @param attackerIP
+     * @param attackerRequest
+     * @param host
+     * @return
+     */
     def send(String attackerIP, String attackerRequest, String host) {
 
         def (String username, String password, String server) = getCredentialsDefaultConfig()

@@ -137,6 +137,19 @@ class MainController
 
         // store request data
 
+        if (requestLine.startsWith("/_search"))
+        {
+
+            // call home, if on a T-Pot installation
+            EWSController x = new EWSController()
+            x.send(remoteIP, requestLine, "MyElasticHoneypotHost")
+
+            requestLine = "{\"took\":23,\"timed_out\":false,\"_shards\":{\"total\":10,\"successful\":10,\"failed\":0},\"hits\":{\"total\":19,\"max_score\":1.0,\"hits\":"
+        }
+        else {
+            requestLine = "{\"error\":\"ElasticsearchIllegalArgumentException[No feature for name ["+ requestLine.substring(1) +"]]\",\"status\":400}"
+        }
+
         redisService.incr("requestCounter")
         redisService.lpush("POST Request",  requestLine + "||" + new Date() + "||" + request.remoteAddr)
         redisService.lpush("IP", request.remoteAddr + "|| " + new Date())
