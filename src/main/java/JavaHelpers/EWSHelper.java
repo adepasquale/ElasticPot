@@ -88,7 +88,7 @@ public class EWSHelper
                     "<Source category=\"ipv4\" port=\"\" protocol=\"tcp\">SOURCE_IP</Source>" +
                     "<Target category=\"ipv4\" port=\"9200\" protocol=\"tcp\">1.2.3.4</Target>" +
                     "<Request type=\"url\">PLAIN</Request>" +
-                    "<Request type=\"raw\">RAW</Request>" +
+                    "<Request type=\"raw\"></Request>" +
                     "<Request type=\"description\">ElasticSearch%20Honeypot</Request>" +
                     "<AdditionalData meaning=\"host\" type=\"string\">HOST</AdditionalData>" +
                     "</Alert>" +
@@ -101,7 +101,7 @@ public class EWSHelper
             ewsRequest = ewsRequest.replace("PLAIN", URLEncoder.encode(requestData, "UTF-8"));
 
             ewsRequest = ewsRequest.replace("HOST", host);
-            ewsRequest = ewsRequest.replace("TIME", URLEncoder.encode(time, "UTF-8"));
+            ewsRequest = ewsRequest.replace("TIME", time); // URLEncoder.encode(time, "UTF-8"));
 
 
             return ewsRequest;
