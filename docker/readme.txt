@@ -5,3 +5,4 @@
 3. On console start /data/start.sh
 
 
+ d
