@@ -24,7 +24,7 @@ ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 # this is only needed to download all needed libraries for grails 2.5.1
 #
 
-RUN ./grailsw war
+RUN ./gradlew war
 
 CMD /data/start.sh
 
