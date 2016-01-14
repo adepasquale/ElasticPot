@@ -21,12 +21,12 @@ WORKDIR "/data/ElasticPot"
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 
 #
-# this is only needed to download all needed libraries for grails 2.5.1
+# this is only needed to download all needed libraries for grails 2.5.3
 #
 
 RUN ./gradlew war
 
-CMD /data/start.sh
+CMD supervisord
 
 
 
